@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import MkdSDK from "../utils/MkdSDK";
+import { AuthContext } from "../authContext";
+import { useNavigate } from "react-router";
 
 const AdminDashboardPage = () => {
-  useEffect(async()=>{
+  const navigate=useNavigate()
+  const { dispatch } = React.useContext(AuthContext);
+  useEffect(()=>{
     async function fetchData() {
       const sdk=new MkdSDK();
     const payload={
+      "payload": {},
       "page": 1,
     "limit": 10
     }
@@ -24,10 +29,15 @@ const AdminDashboardPage = () => {
   
     
   }, []);
+  const logout=()=>{
+    dispatch({ type: "LOGOUT", payload: {}})
+    navigate('/admin/login')
+  }
   return (
     <>
       <div className="w-full flex justify-center items-center text-7xl h-screen text-gray-700 ">
-        Dashboard
+        
+        <button className="button" onClick={logout}>LOGOUT</button>
       </div>
     </>
   );

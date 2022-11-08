@@ -16,29 +16,27 @@ export default function MkdSDK() {
   this.login = async function (email, password, role) {
     //TODO
     
-   
-this.getHeader();
      this.setTable("login")
     const payload={
       "email":email,
       "password":password,
-      "role":role
+      "role":role,
     }
 
     const header = {
       "Content-Type": "application/json",
       "x-project": base64Encode,
-      // Authorization: "Bearer " + localStorage.getItem("token"),
     };
     const result=await this.callRestAPI(payload, "POST", header)
-    if(result.status=='200'){
+    if(result.error==false){
+      localStorage.setItem("token", result.token)
       const data={
-        token: localStorage.getItem("token"),
-        status: "OK"
+        token: result.token,
+        status: "OK",
+        role: "admin"
       }
       return data
     }
- 
   };
 
   this.getHeader = function () {
@@ -65,10 +63,11 @@ this.getHeader();
             body: JSON.stringify(payload),
           }
         );
-        const jsonGet = await getResult;
+        const jsonGet = await getResult.json();
 
         if (getResult.status === 200) {
           return jsonGet
+          // console.log(jsonGet)
         }
         if (getResult.status === 401) {
           throw new Error(jsonGet.message);
@@ -88,14 +87,14 @@ this.getHeader();
           payload.limit = 10;
         }
         const paginateResult = await fetch(
-          this._baseurl + `/v1/api/rest/${this._table}`,
+          this._baseurl + `/v1/api/rest/${this._table}/${method}`,
           {
             method: "POST",
             headers: header,
             body: JSON.stringify(payload),
           }
         );
-        const jsonPaginate = await paginateResult;
+        const jsonPaginate = await paginateResult.json();
 
         if (paginateResult.status === 401) {
           throw new Error(jsonPaginate.message);

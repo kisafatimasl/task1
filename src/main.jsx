@@ -8,7 +8,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 function renderRoutes() {
   const role=localStorage.getItem("role");
-  console.log(role)
+  // console.log(role)
   switch (role) {
     case "admin":
       return (

@@ -31,13 +31,15 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     if(data.email=="adminreacttask@manaknight.com" && data.password=="a123456"){
     const response=await sdk.login(data.email, data.password, "admin")
+    console.log(response)
     if(response.status=='OK'){
       const userdata={
         email: data.email,
         password: data.password,
-        role: 'admin',
+        role: response.role,
         token: response.token
       }
+      
       dispatch({ type: "LOGIN", payload: {data: userdata} });
       snackbar
       navigate('/admin/dashboard')
