@@ -2,18 +2,8 @@ import React, { useEffect } from "react";
 import MkdSDK from "../utils/MkdSDK";
 import { AuthContext } from "../authContext";
 import { useNavigate } from "react-router";
-import { Fragment } from 'react'
+import { AiOutlineArrowLeft,AiOutlineArrowRight  } from 'react-icons/ai';
 
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Logout', href: '#' , current: false },
@@ -69,7 +59,21 @@ const AdminDashboardPage = () => {
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="px-4 py-6 sm:px-0">
+            <div class="grid grid-cols-1 divide-y text-white">
+  <div class="border-solid border-2 border-gray-400 rounded-lg p-4 m-2" >01</div>
+  <div class="border-solid border-2 border-gray-400 rounded-lg p-4 m-2">02</div>
+  <div class="border-solid border-2 border-gray-400 rounded-lg p-4 m-2">03</div>
+</div>
+<div className="inline-flex mx-auto  max-w-screen py-6 px-4 sm:px-6 lg:px-8">
+<button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+  <AiOutlineArrowLeft />
+</button>
+            <button class="absolute right-10 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+              <AiOutlineArrowRight/>
+            </button>
+          </div>
               <div className="h-96 rounded-lg " />
+              
             </div>
             {/* /End replace */}
           </div>
