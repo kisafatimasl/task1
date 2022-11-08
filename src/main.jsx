@@ -6,7 +6,9 @@ import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-function renderRoutes(role) {
+function renderRoutes() {
+  const role=localStorage.getItem("role");
+  console.log(role)
   switch (role) {
     case "admin":
       return (

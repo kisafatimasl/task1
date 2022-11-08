@@ -88,14 +88,14 @@ this.getHeader();
           payload.limit = 10;
         }
         const paginateResult = await fetch(
-          this._baseurl + `/v1/api/rest/${this._table}/${method}`,
+          this._baseurl + `/v1/api/rest/${this._table}`,
           {
-            method: "post",
+            method: "POST",
             headers: header,
             body: JSON.stringify(payload),
           }
         );
-        const jsonPaginate = await paginateResult.json();
+        const jsonPaginate = await paginateResult;
 
         if (paginateResult.status === 401) {
           throw new Error(jsonPaginate.message);
@@ -104,7 +104,7 @@ this.getHeader();
           throw new Error(jsonPaginate.message);
         }
         
-        return jsonPaginate;
+        console.log(jsonPaginate);
       default:
         break;
     }
